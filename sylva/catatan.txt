@@ -1,0 +1,3 @@
+Baris 1: Belajar Pemrograman Java itu seru.
+Baris 2: Hari ini kita belajar operasi File I/O.
+Baris 3: Tetap semangat dan terus berlatih coding!
