@@ -1,0 +1,115 @@
+import java.util.ArrayList;
+
+// Interface
+interface BisaDipinjam {
+    void pinjam();
+    void kembalikan();
+}
+
+// Abstract class
+abstract class Item {
+    private String judul;
+
+    public Item(String judul) {
+        this.judul = judul;
+    }
+
+    public String getJudul() {
+        return judul;
+    }
+
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
+
+    abstract void info();
+}
+
+// Class Buku
+class Buku extends Item implements BisaDipinjam {
+    private String penulis;
+
+    public Buku(String judul, String penulis) {
+        super(judul);
+        this.penulis = penulis;
+    }
+
+    @Override
+    void info() {
+        System.out.println("[BUKU] " + getJudul() + " - " + penulis);
+    }
+
+    @Override
+    public void pinjam() {
+        System.out.println("Meminjam: " + getJudul());
+        System.out.println(getJudul() + " berhasil dipinjam!");
+    }
+
+    @Override
+    public void kembalikan() {
+        System.out.println(getJudul() + " berhasil dikembalikan!");
+    }
+}
+
+// Class Majalah
+class Majalah extends Item implements BisaDipinjam {
+    private String edisi;
+
+    public Majalah(String judul, String edisi) {
+        super(judul);
+        this.edisi = edisi;
+    }
+
+    @Override
+    void info() {
+        System.out.println("[MAJALAH] " + getJudul() + " - Edisi " + edisi);
+    }
+
+    @Override
+    public void pinjam() {
+        System.out.println("Meminjam majalah: " + getJudul());
+        System.out.println(getJudul() + " berhasil dipinjam!");
+    }
+
+    @Override
+    public void kembalikan() {
+        System.out.println(getJudul() + " berhasil dikembalikan!");
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+
+        // ArrayList untuk menyimpan item perpustakaan
+        ArrayList<Item> daftarItem = new ArrayList<>();
+
+        // Membuat 2 buku dan 1 majalah
+        Buku buku1 = new Buku("Laskar Pelangi", "Andrea Hirata");
+        Buku buku2 = new Buku("Bumi Manusia", "Pramoedya");
+        Majalah majalah1 = new Majalah("Tempo", "2024");
+
+        // Menambahkan item ke ArrayList
+        daftarItem.add(buku1);
+        daftarItem.add(buku2);
+        daftarItem.add(majalah1);
+
+        // Menampilkan daftar perpustakaan
+        System.out.println("=== DAFTAR PERPUSTAKAAN ===");
+
+        // Polymorphism
+        for (Item item : daftarItem) {
+            item.info();
+        }
+
+        System.out.println();
+
+        // Meminjam salah satu item
+        buku1.pinjam();
+
+        System.out.println();
+
+        // Menampilkan total item
+        System.out.println("Total item: " + daftarItem.size());
+    }
+}
